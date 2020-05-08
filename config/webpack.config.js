@@ -352,6 +352,15 @@ module.exports = function(webpackEnv) {
             // smaller than specified limit in bytes as data URLs to avoid requests.
             // A missing `test` is equivalent to a match.
             {
+              test: /\.svg$/,
+              use: [
+                { loader: 'svg-sprite-loader', options: { } },
+                {
+                  loader: 'svgo-loader', options: {}
+                }
+              ]
+            },
+            {
               test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
               loader: require.resolve('url-loader'),
               options: {
