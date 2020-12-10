@@ -20,20 +20,14 @@ const Wrapper = styled.section`
   }
 `;
 const NoteSection: React.FC = () => {
-  const [note,setNote] = useState('')
-  const refInput = useRef<HTMLInputElement>(null)
-  const onBlur=()=>{
-    if(refInput.current){
+  const [note, setNote] = useState('');
+  const refInput = useRef<HTMLInputElement>(null);
+  const onBlur = () => {
+    if (refInput.current) {
       console.log(refInput.current.value);
-      setNote(refInput.current.value)
+      setNote(refInput.current.value);
     }
-  }
-  const onChange=(value:any)=>{
-    if(value){
-      console.log(value);
-      setNote(value)
-    }
-  }
+  };
   return (
     <Wrapper>
       <label>
@@ -43,7 +37,7 @@ const NoteSection: React.FC = () => {
           // value={note} onChange={e=>setNote(e.target.value)}
           // 2.非受控：过程变化不关心，关心最后的结果
           // 这里必须用defaultValue
-          ref = {refInput} defaultValue={note} onBlur={onBlur}
+               ref={refInput} defaultValue={note} onBlur={onBlur}
           // 3.细节注意：React onChange会在输入一个字的时候就触发
           //  HTML onchange 在鼠标移走的时候触发，早于onBlur
         />
