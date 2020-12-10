@@ -37,7 +37,6 @@ const TagsSection: React.FC = () => {
   const onAddTag = () => {
     const tagName = window.prompt("新标签的名称为");
     if (tagName) {
-      console.log(11);
       setTags([...tags, tagName]);
     }
   };

@@ -5,6 +5,7 @@ import * as serviceWorker from './serviceWorker';
 import 'index.scss';
 
 ReactDOM.render(
+  //严格模式会造成渲染多次
   <React.StrictMode>
     <App />
   </React.StrictMode>,
