@@ -32,11 +32,19 @@ const Wrapper = styled.section`
   }
 `;
 const NumberPadSection = () => {
-  const [output,setOutput] = useState('')
+  const [output, _setOutput] = useState('0');
+  const setOutput = (output: string) => {
+    if (output.length >= 16) {
+      output = output.slice(0, 16);
+    } else if (!output.length) {
+      output = '0';
+    }
+    _setOutput(output);
+  };
   const onClickButtonWrapper = (e: React.MouseEvent) => {
     //如果button里面有span需要特殊处理
     const text = (e.target as HTMLButtonElement).textContent;
-    switch (text){
+    switch (text) {
       case '0':
       case '1':
       case '2':
@@ -47,9 +55,27 @@ const NumberPadSection = () => {
       case '7':
       case '8':
       case '9':
-      case '.':
-        if(output==='0'){
+        if (output === '0') {
+          setOutput(text);
+        } else {
+          setOutput(output + text);
         }
+        break;
+      case '.':
+        if (output.indexOf('.') >= 0) return;
+        setOutput(output + '.');
+        break;
+      case '删除':
+        if (output.length === 1) {
+          setOutput('');
+        } else {
+          setOutput(output.slice(0, -1));
+        }
+        break;
+      case '清空':
+        setOutput('');
+        break;
+      case 'OK':
         break;
     }
 
@@ -57,7 +83,7 @@ const NumberPadSection = () => {
   };
   return (
     <Wrapper>
-      <div className='output'>100</div>
+      <div className='output'>{output}</div>
       <div className='pad clearfix' onClick={(e) => onClickButtonWrapper(e)}>
         <button>1</button>
         <button>2</button>
