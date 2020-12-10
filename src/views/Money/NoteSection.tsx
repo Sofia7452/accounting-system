@@ -44,6 +44,8 @@ const NoteSection: React.FC = () => {
           // 2.非受控：过程变化不关心，关心最后的结果
           // 这里必须用defaultValue
           ref = {refInput} defaultValue={note} onBlur={onBlur}
+          // 3.细节注意：React onChange会在输入一个字的时候就触发
+          //  HTML onchange 在鼠标移走的时候触发，早于onBlur
         />
       </label>
     </Wrapper>
