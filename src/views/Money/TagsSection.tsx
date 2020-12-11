@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import React, {useState} from 'react';
+import React from 'react';
+import {useTags} from '../../useTags';
 
 const Wapper = styled.section`
   background: #ffffff;
@@ -37,7 +38,7 @@ type Props = {
 };
 // 函数的所有类型参数都是由<>尖括号包起来的
 const TagsSection: React.FC<Props> = (props) => {
-  const [tags, setTags] = useState<string[]>(['衣', '食', '住', '行']);
+  const {tags, setTags} = useTags();
   const selectedTags = props.value
   const onAddTag = () => {
     const tagName = window.prompt("新标签的名称为");
