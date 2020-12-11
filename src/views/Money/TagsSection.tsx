@@ -31,9 +31,14 @@ const Wapper = styled.section`
     margin-top: 8px;
   }
 `;
-const TagsSection: React.FC = () => {
+type Props = {
+  value: string[];
+  onChange: (selected:string[])=>void
+};
+// 函数的所有类型参数都是由<>尖括号包起来的
+const TagsSection: React.FC<Props> = (props) => {
   const [tags, setTags] = useState<string[]>(['衣', '食', '住', '行']);
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const selectedTags = props.value
   const onAddTag = () => {
     const tagName = window.prompt("新标签的名称为");
     if (tagName) {
@@ -44,9 +49,9 @@ const TagsSection: React.FC = () => {
     const index = selectedTags.indexOf(tag);
     if (index >= 0) {
       //不能操作原数组，且只能返回新的数组
-      setSelectedTags(selectedTags.filter(t => t !== tag));
+      props.onChange(selectedTags.filter(t => t !== tag));
     } else {
-      setSelectedTags([...selectedTags, tag]);
+      props.onChange([...selectedTags, tag]);
     }
   };
   return (

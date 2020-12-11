@@ -1,6 +1,6 @@
 //⚠️： white-space: nowrap可以让内容不换行
 import styled from 'styled-components';
-import React, {useRef, useState} from 'react';
+import React, {useRef} from 'react';
 
 const Wrapper = styled.section`
   background: #f5f5f5;
@@ -19,13 +19,17 @@ const Wrapper = styled.section`
     }
   }
 `;
-const NoteSection: React.FC = () => {
-  const [note, setNote] = useState('');
+type Props = {
+  value:string,
+  onChange:(value:string)=>void
+}
+const NoteSection: React.FC<Props> = (props) => {
+  const note = props.value
   const refInput = useRef<HTMLInputElement>(null);
   const onBlur = () => {
     if (refInput.current) {
       console.log(refInput.current.value);
-      setNote(refInput.current.value);
+      props.onChange(refInput.current.value);
     }
   };
   return (
@@ -34,7 +38,7 @@ const NoteSection: React.FC = () => {
         <span>备注</span>
         <input type='text' placeholder='在这里添加备注'
           // 1.受控：过程变化都控制
-          // value={note} onChange={e=>setNote(e.target.value)}
+          // value={note} onChange={e=>props.onChange(e.target.value)}
           // 2.非受控：过程变化不关心，关心最后的结果
           // 这里必须用defaultValue
                ref={refInput} defaultValue={note} onBlur={onBlur}
