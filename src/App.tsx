@@ -2,6 +2,7 @@ import React from 'react';
 import {HashRouter as Router, Redirect, Route, Switch} from "react-router-dom";
 import Tags from './views/Tags';
 import Statistics from './views/Statistics';
+import {Tag} from './views/Tag';
 import Money from './views/Money';
 import NoMatch from './views/NoMatch';
 import styled from 'styled-components';
@@ -15,16 +16,19 @@ function App() {
     <AppWrapper>
       <Router>
         <Switch>
-          <Route path="/tags">
+          <Route exact path="/tags">
             <Tags/>
           </Route>
-          <Route path="/money">
+          <Route exact path="/tags/:tag">
+            <Tag/>
+          </Route>
+          <Route exact path="/money">
             <Money/>
           </Route>
-          <Route path="/statistics">
+          <Route exact path="/statistics">
             <Statistics/>
           </Route>
-          <Redirect from="/" exact to="/money"/>
+          <Redirect exact from="/" to="/money"/>
           <Route path="*">
             <NoMatch/>
           </Route>
