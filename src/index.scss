@@ -23,3 +23,10 @@ button{
   height: 1em;
   display: inline-block;
 }
+.oneLine{
+  //不换行
+  white-space: nowrap;
+  overflow: hidden;
+  //超过一行加省略号
+  text-overflow: ellipsis;
+}
