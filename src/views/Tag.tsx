@@ -1,10 +1,13 @@
 import React from 'react';
-import {useTags} from '../useTags';
-import {useParams} from 'react-router-dom';
 import Layout from '../components/layout';
 import Icon from '../components/icon';
 import {Button} from '../components/Button';
 import styled from 'styled-components';
+import {Input} from '../components/input';
+import {Center} from '../components/Center';
+import {Space} from '../components/Space';
+import {useTags} from '../useTags';
+import {useParams} from 'react-router-dom';
 
 const Topbar = styled.header`
   display: flex;
@@ -14,6 +17,12 @@ const Topbar = styled.header`
   padding: 14px;
   background: white;
 `;
+
+const InputWrapper = styled.div`
+  background: white;
+  padding: 0 16px;
+  margin-top: 8px;
+`
 const Tag: React.FC = () => {
   const {findTag} = useTags();
   let {id} = useParams();
@@ -25,14 +34,16 @@ const Tag: React.FC = () => {
         <span>编辑标签</span>
         <Icon/>
       </Topbar>
-      {/*<Input label='编辑标签' placeholder='标签名'/>*/}
-      <div>
-        <label>
-          <span>编辑标签</span>
-          <input type='text' placeholder='标签名'/>
-        </label>
-      </div>
-      <Button>删除标签</Button>
+      <InputWrapper>
+        <Input type='text' label='编辑标签' placeholder='标签名' value={tag.name}/>
+      </InputWrapper>
+      <Center>
+        <Space/>
+        <Space/>
+        <Space/>
+        <Button>删除标签</Button>
+      </Center>
+
     </Layout>
   );
 };
