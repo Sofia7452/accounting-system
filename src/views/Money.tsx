@@ -5,7 +5,7 @@ import {TagsSection} from './Money/TagsSection';
 import {NoteSection} from './Money/NoteSection';
 import {CategorySection} from './Money/CategorySection';
 import {NumberPadSection} from './Money/NumberPadSection';
-
+//styled(Layout)：styled-components封装组件样式的方法
 const MyLayout = styled(Layout)`
   display: flex;
   flex-direction: column;

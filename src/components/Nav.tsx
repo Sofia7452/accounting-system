@@ -38,6 +38,7 @@ const Nav = () => {
     <NavWrapper>
       <ul>
         <li>
+          {/*底部导航用react-router-dom 中的NavLink比较方便*/}
           <NavLink to="/tags" activeClassName="selected"><Icon name='tag'/>标签页</NavLink>
         </li>
         <li>
