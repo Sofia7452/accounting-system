@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
-import {useTags} from '../../useTags';
+import {useTags} from 'useTags';
+import {createId} from 'lib/createId';
 
 const Wapper = styled.section`
   background: #ffffff;
@@ -34,16 +35,16 @@ const Wapper = styled.section`
 `;
 type Props = {
   value: number[];
-  onChange: (selected:number[])=>void
+  onChange: (selected: number[]) => void
 };
 // 函数的所有类型参数都是由<>尖括号包起来的
 const TagsSection: React.FC<Props> = (props) => {
   const {tags, setTags} = useTags();
-  const selectedTagIds = props.value
+  const selectedTagIds = props.value;
   const onAddTag = () => {
     const tagName = window.prompt("新标签的名称为");
     if (tagName) {
-      setTags([...tags, {id:Math.random(),name:tagName}]);
+      setTags([...tags, {id: createId(), name: tagName}]);
     }
   };
   const onToggleTag = (tagId: number) => {
