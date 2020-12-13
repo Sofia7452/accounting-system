@@ -13,7 +13,7 @@ const Label = styled.label`
     border: none;
   }
 `;
-
+//Props除了接受自定义label属性还接受React.InputHTMLAttributes其他普通的属性
 type Props = {
   label: string,
 } & React.InputHTMLAttributes<HTMLInputElement>

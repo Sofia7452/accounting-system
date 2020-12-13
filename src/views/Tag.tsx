@@ -7,7 +7,7 @@ import {Input} from '../components/input';
 import {Center} from '../components/Center';
 import {Space} from '../components/Space';
 import {useTags} from '../useTags';
-import {useParams} from 'react-router-dom';
+import {useHistory, useParams} from 'react-router-dom';
 
 const Topbar = styled.header`
   display: flex;
@@ -48,10 +48,15 @@ const Tag: React.FC = () => {
       </Center>
     </div>
   );
+  const history = useHistory();
+  const onClickBack = () => {
+    //使用hash路由，页面没有网络请求，没有页面刷新，只是页面状态变化
+    history.goBack();
+  };
   return (
     <Layout>
       <Topbar>
-        <Icon name='left'/>
+        <Icon name='left' onClick={onClickBack}/>
         <span>编辑标签</span>
         <Icon/>
       </Topbar>
