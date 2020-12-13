@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import {Input} from '../components/input';
 import {Center} from '../components/Center';
 import {Space} from '../components/Space';
-import {useTags} from '../useTags';
+import {useTags} from '../hooks/useTags';
 import {useHistory, useParams} from 'react-router-dom';
 
 const Topbar = styled.header`
@@ -50,7 +50,7 @@ const Tag: React.FC = () => {
   );
   const history = useHistory();
   const onClickBack = () => {
-    //使用hash路由，页面没有网络请求，没有页面刷新，只是页面状态变化
+    //使用hash路由，页面没有网络请求，即页面刷新，只是页面状态变化
     history.goBack();
   };
   return (

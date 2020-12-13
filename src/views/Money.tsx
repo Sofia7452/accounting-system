@@ -5,25 +5,34 @@ import {TagsSection} from './Money/TagsSection';
 import {NoteSection} from './Money/NoteSection';
 import {CategorySection} from './Money/CategorySection';
 import {NumberPadSection} from './Money/NumberPadSection';
+import {useRecords} from '../hooks/useRecords';
+import {NewRecordItem} from 'hooks/useRecords';
 //styled(Layout)：styled-components封装组件样式的方法
 const MyLayout = styled(Layout)`
   display: flex;
   flex-direction: column;
 `;
 
-type Category = '+' | '-'
+const defaultFormData:NewRecordItem = {
+  tagIds: [],
+  note: '',
+  category: '-',
+  amount: 0,
+};
+
 function Money() {
-  const [selected, setSelected] = useState({
-    tagIds: [] as number[],
-    note: '',
-    category: '-' as Category,
-    amount: 0
-  });
+  const {records, addRecord} = useRecords();
+  const [selected, setSelected] = useState(defaultFormData);
   //Partial<Selected>对象类型中的部分
   const onChange = (obj: Partial<typeof selected>) => setSelected({
     ...selected,
     ...obj
   });
+  const submit = () => {
+    addRecord(selected);
+    alert('保存成功');
+    setSelected(defaultFormData);
+  };
   return (
     <MyLayout>
       <TagsSection value={selected.tagIds}
@@ -33,7 +42,7 @@ function Money() {
       <CategorySection value={selected.category}
                        onChange={category => onChange({category})}/>
       <NumberPadSection value={selected.amount}
-                        onOk={() => {}}
+                        onOk={submit}
                         onChange={amount => onChange({amount})}/>
     </MyLayout>
   );

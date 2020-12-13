@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {createId} from 'lib/createId';
-import {useUpdate} from './hooks/useUpdate';
+import {useUpdate} from './useUpdate';
 //封装自定义hook，最后return出需要外媒使用的方法和函数
 
 const useTags = () => {
