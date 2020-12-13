@@ -13,7 +13,7 @@ const MyLayout = styled(Layout)`
   flex-direction: column;
 `;
 
-const defaultFormData:NewRecordItem = {
+const defaultFormData: NewRecordItem = {
   tagIds: [],
   note: '',
   category: '-',
@@ -21,7 +21,7 @@ const defaultFormData:NewRecordItem = {
 };
 
 function Money() {
-  const {records, addRecord} = useRecords();
+  const {addRecord} = useRecords();
   const [selected, setSelected] = useState(defaultFormData);
   //Partial<Selected>对象类型中的部分
   const onChange = (obj: Partial<typeof selected>) => setSelected({
@@ -29,9 +29,10 @@ function Money() {
     ...obj
   });
   const submit = () => {
-    addRecord(selected);
-    alert('保存成功');
-    setSelected(defaultFormData);
+    if (addRecord(selected)) {
+      alert('保存成功');
+      setSelected(defaultFormData);
+    }
   };
   return (
     <MyLayout>
