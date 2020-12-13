@@ -17,7 +17,7 @@ const defaultFormData: NewRecordItem = {
   tagIds: [],
   note: '',
   category: '-',
-  amount: 0,
+  amount: '0',
 };
 
 function Money() {
@@ -44,7 +44,7 @@ function Money() {
                        onChange={category => onChange({category})}/>
       <NumberPadSection value={selected.amount}
                         onOk={submit}
-                        onChange={amount => onChange({amount})}/>
+                        onChange={value => onChange({amount: value})}/>
     </MyLayout>
   );
 }

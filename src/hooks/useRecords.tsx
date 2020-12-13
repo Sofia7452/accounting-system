@@ -6,7 +6,7 @@ export type NewRecordItem = {
   tagIds: number[],
   note: string,
   category: '+' | '-'
-  amount: number,
+  amount: string,
 }
 export type RecordItem = NewRecordItem & {
   createdAt: string;  //ISO 8601
@@ -31,7 +31,7 @@ export const useRecords = () => {
     window.localStorage.setItem('records', JSON.stringify(records));
   }, [records]);
   const addRecord = (newRecord: NewRecordItem) => {
-    if (newRecord.amount <= 0) {
+    if (parseFloat(newRecord.amount) <= 0) {
       alert('请输入金额');
       return false;
     }

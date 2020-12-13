@@ -32,20 +32,20 @@ const Wrapper = styled.section`
   }
 `;
 type Props = {
-  value: number,
-  onChange: (value:number) => void,
+  value: string,
+  onChange: (value:string) => void,
   onOk?:(value:number)=>void
 }
 const NumberPadSection: React.FC<Props> = (props) => {
-  const output = props.value.toString();
+  const output = props.value;
   const setOutput = (output: string) => {
-    let value;
+    let value:string;
     if (output.length > 16) {
-      value = parseFloat(output.slice(0, 16));
+      value = output.slice(0, 16)
     } else if (!output.length) {
-      value = 0;
+      value = '0';
     } else {
-      value = parseFloat(output);
+      value = output;
     }
     props.onChange(value);
   };
