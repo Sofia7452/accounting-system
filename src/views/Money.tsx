@@ -12,7 +12,9 @@ const MyLayout = styled(Layout)`
   display: flex;
   flex-direction: column;
 `;
-
+const CategoryWapper = styled.div`
+  background: #c4c4c4;
+`;
 const defaultFormData: NewRecordItem = {
   tagIds: [],
   note: '',
@@ -40,8 +42,9 @@ function Money() {
                    onChange={tagIds => onChange({tagIds})}/>
       <NoteSection value={selected.note}
                    onChange={note => onChange({note})}/>
-      <CategorySection value={selected.category}
-                       onChange={category => onChange({category})}/>
+      <CategoryWapper>
+        <CategorySection value={selected.category} onChange={category => onChange({category})}/>
+      </CategoryWapper>
       <NumberPadSection value={selected.amount}
                         onOk={submit}
                         onChange={value => onChange({amount: value})}/>

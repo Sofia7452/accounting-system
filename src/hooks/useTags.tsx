@@ -7,7 +7,7 @@ const useTags = () => {
   const [tags, setTags] = useState<{ id: number; name: string }[]>([]);
   useEffect(() => {
     let localTags = JSON.parse(window.localStorage.getItem('tags') || '[]');
-  // && window.localStorage.getItem('deleteToZero')!=='true'
+    // && window.localStorage.getItem('deleteToZero')!=='true'
     if (localTags.length === 0) {
       localTags = [
         {id: createId(), name: '衣'},
@@ -51,6 +51,11 @@ const useTags = () => {
       setTags([...tags, {id: createId(), name: tagName}]);
     }
   };
+  const getName = (id: number) => {
+    const tag = tags.filter(t => t.id === id)[0];
+    return tag ? tag.name : '';
+  };
+
   //hooks 返回读，写，新增，更新，删除，查找索引
   return {
     tags,
@@ -59,7 +64,8 @@ const useTags = () => {
     findTagIndex,
     updateTag,
     deleteTag,
-    addTag
+    addTag,
+    getName
   }
     ;
 };
