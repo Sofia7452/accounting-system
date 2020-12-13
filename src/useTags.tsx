@@ -29,13 +29,23 @@ const useTags = () => {
     tagsClone.splice(index, 1, {id, name: obj.name});
     setTags(tagsClone);
   };
-  //hooks 返回读，写，更新，查找索引
+  const deleteTag = (id: number) => {
+    //获取要更删的tag的下标
+    const index = findTagIndex(id);
+    //深拷贝tags得到tagsClone
+    const tagsClone = JSON.parse(JSON.stringify(tags));
+    //把 tagsClone  的第 index 删掉
+    tagsClone.splice(index, 1);
+    setTags(tagsClone);
+  };
+  //hooks 返回读，写，更新，删除，查找索引
   return {
     tags,
     setTags,
     findTag,
     findTagIndex,
-    updateTag
+    updateTag,
+    deleteTag
   };
 };
 

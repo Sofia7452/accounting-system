@@ -24,16 +24,14 @@ const InputWrapper = styled.div`
   margin-top: 8px;
 `;
 const Tag: React.FC = () => {
-  const {findTag, updateTag} = useTags();
+  const {findTag, updateTag, deleteTag} = useTags();
   let {id: idString} = useParams();
   const tag = findTag(parseInt(idString));
-  return (
-    <Layout>
-      <Topbar>
-        <Icon name='left'/>
-        <span>编辑标签</span>
-        <Icon/>
-      </Topbar>
+  //tagContent不能直接写成一个div，
+  // 因为直接使用tag会报错（tag可能为undefined），
+  // 应该使用函数延迟执行
+  const tagContent = (tag: { id: number, name: string }) => (
+    <div>
       <InputWrapper>
         <Input type='text' label='编辑标签'
                placeholder='标签名' value={tag.name}
@@ -46,10 +44,23 @@ const Tag: React.FC = () => {
         <Space/>
         <Space/>
         <Space/>
-        <Button>删除标签</Button>
+        <Button onClick={() => deleteTag(tag.id)}>删除标签</Button>
       </Center>
+    </div>
+  );
+  return (
+    <Layout>
+      <Topbar>
+        <Icon name='left'/>
+        <span>编辑标签</span>
+        <Icon/>
+      </Topbar>
+      {tag ? tagContent(tag) : <Center>
+        <div>tag不存在</div>
+      </Center>}
 
     </Layout>
   );
+
 };
 export {Tag};
