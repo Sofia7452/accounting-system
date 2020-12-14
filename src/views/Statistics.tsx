@@ -35,7 +35,7 @@ function Statistics() {
   const [category, setCategory] = useState<'+' | '-'>('-');
   const selectedRecords = records.filter(r => r.category === category);
   let hash: { [k: string]: RecordItem[] } = {};//{'2020-04-11':[item,item],'2020-05-11':[item,item]}
-  selectedRecords.map(r => {
+  selectedRecords.forEach(r => {
     const key = day(r.createdAt).format('YYYY年MM月DD日');
     if (!(key in hash)) {
       hash[key] = [];
@@ -52,7 +52,7 @@ function Statistics() {
                          onChange={(category) => setCategory(category)}/>
       </CategoryWrapper>
       {/*[date,records] 这里对数组进行析构，优雅且不用起奇怪的名字*/}
-      {array.map(([date, records]) => <div>
+      {array.map(([date, records],index) => <div key={index}>
           <Header>
             {date}
           </Header>
