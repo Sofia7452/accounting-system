@@ -1,8 +1,12 @@
 import {useEffect, useState} from 'react';
 import {createId} from 'lib/createId';
 import {useUpdate} from './useUpdate';
-//封装自定义hook，最后return出需要外媒使用的方法和函数
+//同一个页面可以通过useRef记录一个变量的变化处理逻辑
+//切换页面几两个不同的页面比较难用useRef，此时选用window.localStorage方法，
+//也可以选用子传父，父再传子的方法，那么也可以用 redux 的方法。
+// 可以说能用window.localStorage，必然能用redux，就是用了全局的store管理数据。
 
+//封装自定义hook，最后return出需要外媒使用的方法和函数
 const useTags = () => {
   const [tags, setTags] = useState<{ id: number; name: string }[]>([]);
   useEffect(() => {
